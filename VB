@@ -1,0 +1,203 @@
+Imports System.Data
+Imports System.Data.SqlClient
+Public Class employee
+    Dim con As New SqlConnection
+    Dim cmd As New SqlCommand
+    Dim cmdstr As String
+    Dim constr As String = "Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Nikunj\EMP\EMP\employee.mdf;Integrated Security=True"
+    Dim Gender As String
+    Dim adp As SqlDataAdapter
+    Dim ds As DataSet
+    Dim i, maxrow, inc As Integer
+
+    Private Sub employee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        fillgrid()
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            If optMale.Checked = True Then
+                Gender = optMale.Text
+            ElseIf optFemale.Checked = True Then
+                Gender = optFemale.Text
+            End If
+            con = New SqlConnection(constr)
+            con.Open()
+            cmdstr = "insert into employee values(" + txteno.Text + ",'" + txtename.Text + "','" + txtsalary.Text + "','" + Gender.ToString + "','" + cmbDesignation.Text + "','" + DateTimePicker1.Text + "') "
+            cmd = New SqlCommand(cmdstr, con)
+            cmd.ExecuteNonQuery()
+            con.Close()
+            fillgrid()
+            MsgBox("inserted successfully")
+            clearall()
+
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+
+        End Try
+
+   
+    End Sub
+    Private Sub clearall()
+        txteno.Clear()
+        txtename.Clear()
+        txtsalary.Clear()
+    End Sub
+
+    Private Sub fillgrid()
+        con = New SqlConnection(constr)
+        con.Open()
+        cmdstr = "select * from employee"
+        cmd = New SqlCommand(cmdstr, con)
+        cmd.ExecuteScalar()
+        con.Close()
+        adp = New SqlDataAdapter(cmd)
+        Dim tbl As New DataTable
+        adp.Fill(tbl)
+        DataGridView1.DataSource = tbl
+    End Sub
+
+
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        Try
+            If optMale.Checked = True Then
+                Gender = optMale.Text
+            Else
+                Gender = optFemale.Text
+            End If
+            con = New SqlConnection(constr)
+            con.Open()
+            cmdstr = "update employee set Eno=" + txteno.Text + ",Ename='" + txtename.Text + "',Salary='" + txtsalary.Text + "',Gender='" + Gender + "',Designation='" + cmbDesignation.Text + "',DOB='" + DateTimePicker1.Text + "'where Eno=" + txteno.Text + ""
+            cmd = New SqlCommand(cmdstr, con)
+            cmd.ExecuteNonQuery()
+            con.Close()
+            fillgrid()
+            MsgBox("updated successfully")
+            clearall()
+
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+
+        End Try
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Try
+            con = New SqlConnection(constr)
+            con.Open()
+            cmdstr = "delete from employee where Eno=" + txteno.Text + ""
+            cmd = New SqlCommand(cmdstr, con)
+            cmd.ExecuteNonQuery()
+            con.Close()
+            fillgrid()
+            MsgBox("deleted successfully")
+            clearall()
+
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+
+        End Try
+    End Sub
+
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        Dim i As Integer
+        Try
+            i = DataGridView1.CurrentRow.Index
+            txteno.Text = DataGridView1.Item(0, i).Value
+            txtename.Text = DataGridView1.Item(1, i).Value
+            txtsalary.Text = DataGridView1.Item(2, i).Value
+            If DataGridView1.Item(3, i).Value = "Male" Then
+                optMale.Checked = True
+            Else
+                optFemale.Checked = True
+            End If
+            cmbDesignation.Text = DataGridView1.Item(4, i).Value
+            DateTimePicker1.Text = DataGridView1.Item(5, i).Value
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+        End Try
+    End Sub
+
+    Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
+        Try
+            con = New SqlConnection(constr)
+            con.Open()
+            cmdstr = "select * from employee where salary>=25000"
+            cmd = New SqlCommand(cmdstr, con)
+            cmd.ExecuteScalar()
+            con.Close()
+            adp = New SqlDataAdapter(cmd)
+            Dim tbl As New DataTable
+            adp.Fill(tbl)
+            DataGridView1.DataSource = tbl
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+
+        End Try
+    End Sub
+
+    Private Sub btnShowAllData_Click(sender As Object, e As EventArgs) Handles btnShowAllData.Click
+        Try
+            con = New SqlConnection(constr)
+            con.Open()
+            cmdstr = "select * from employee"
+            cmd = New SqlCommand(cmdstr, con)
+            cmd.ExecuteScalar()
+            con.Close()
+            adp = New SqlDataAdapter(cmd)
+            Dim tbl As New DataTable
+            adp.Fill(tbl)
+            DataGridView1.DataSource = tbl
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString())
+        End Try
+    End Sub
+
+    Private Sub NevigateRecords()
+        Try
+            If ds.Tables("employee").Rows.Count > 0 Then
+                With ds.Tables("employee").Rows(inc)
+                    txteno.Text = .Item(0)
+                    txtename.Text = .Item(1)
+                End With
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "error")
+        End Try
+       
+    End Sub
+
+    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+        If inc = maxrow - 1 Then
+            MsgBox("This is Last Record")
+        End If
+        inc = inc + 1
+        NevigateRecords()
+    End Sub
+
+    Private Sub btnprev_Click(sender As Object, e As EventArgs) Handles btnprev.Click
+        If inc = 0 Then
+            MsgBox("This is First Record")
+        End If
+        inc = inc - 1
+        NevigateRecords()
+    End Sub
+
+    Private Sub btnLast_Click(sender As Object, e As EventArgs) Handles btnLast.Click
+        If inc < 0 Then
+            MsgBox("Empty DataSet")
+        Else
+            inc = maxrow - 1
+            NevigateRecords()
+        End If
+    End Sub
+
+    Private Sub btnFirst_Click(sender As Object, e As EventArgs) Handles btnFirst.Click
+        If inc < 0 Then
+            MsgBox("Empty DataSet")
+        Else
+            inc = 0
+            NevigateRecords()
+        End If
+    End Sub
+End Class

@@ -1,0 +1,198 @@
+1) Create a Food Delivery Application, showing Custom List of Food Items with its respective 
+price. Clicking of any Food Item, will open another layout with all the details of the selected 
+Item. In Detail layout use ImageSlider component with multiple food images.
+XML FILE
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <ScrollView
+ android:scrollbars="vertical"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent">
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical">
+ <RelativeLayout
+ android:id="@+id/main"
+ android:layout_width="match_parent"
+ android:layout_height="150dp">
+ <ImageView
+ android:id="@+id/img"
+ android:layout_width="match_parent"
+ android:layout_height="150dp"
+ android:src="@drawable/food2">
+ </ImageView>
+ </RelativeLayout>
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="200dp"
+ android:gravity="center"
+ android:orientation="vertical"
+ android:padding="5dp">
+ <ImageView
+ android:src="@drawable/khaman"
+ android:layout_width="200dp"
+ android:layout_height="150dp">
+ </ImageView>
+ <CheckBox
+ android:textSize="25dp"
+ android:text="Khaman"
+ android:id="@+id/khaman"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content">
+ </CheckBox>
+ </LinearLayout>
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="200dp"
+ android:gravity="center"
+ android:orientation="vertical"
+ android:padding="5dp">
+ <ImageView
+ android:src="@drawable/locho"
+ android:layout_width="200dp"
+ android:layout_height="150dp">
+ </ImageView>
+ <CheckBox
+ android:textSize="25dp"
+ android:text="Locho"
+ android:id="@+id/locho"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content">
+ </CheckBox>
+ </LinearLayout>
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="200dp"
+ android:gravity="center"
+ android:orientation="vertical"
+ android:padding="5dp">
+ <ImageView
+ android:src="@drawable/patra"
+ android:layout_width="200dp"
+ android:layout_height="150dp">
+ </ImageView>
+ <CheckBox
+ android:textSize="25dp"
+ android:text="patra"
+ android:id="@+id/patra"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content">
+ </CheckBox>
+ </LinearLayout>
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="200dp"
+ android:gravity="center"
+ android:orientation="vertical"
+ android:padding="5dp">
+ <ImageView
+ android:src="@drawable/smosha"
+ android:layout_width="200dp"
+ android:layout_height="150dp">
+ </ImageView>
+ <CheckBox
+ android:textSize="25dp"
+ android:text="Smosha"
+ android:id="@+id/smosha"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content">
+ </CheckBox>
+ </LinearLayout>
+F. Raj Ghevriya College, [11-03-2022 16:09]
+<LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="200dp"
+ android:gravity="center"
+ android:orientation="vertical"
+ android:padding="5dp">
+ <ImageView
+ android:src="@drawable/pizza"
+ android:layout_width="200dp"
+ android:layout_height="150dp">
+ </ImageView>
+ <CheckBox
+ android:textSize="25dp"
+ android:text="pizza"
+ android:id="@+id/pizza"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content">
+ </CheckBox>
+ </LinearLayout>
+<Button
+ android:layout_marginLeft="150dp"
+ android:id="@+id/order"
+ android:text="Order"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"></Button>
+ </LinearLayout>
+</ScrollView>
+</RelativeLayout>
+
+
+
+
+
+
+JAVA 
+package com.example.foodorder;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+CheckBox khaman,locho,patra,smosha,pizza;
+Button order;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ khaman = findViewById(R.id.khaman);
+ locho = findViewById(R.id.locho);
+ patra = findViewById(R.id.patra);
+ smosha = findViewById(R.id.smosha);
+ pizza = findViewById(R.id.pizza);
+ order = findViewById(R.id.order);
+ order.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ int total = 0;
+ StringBuilder result = new StringBuilder();
+ result.append("selected Items");
+ result.append("\n==============");
+ if (khaman.isChecked()) {
+ result.append("\nkhaman = 120 Rs.");
+ total += 120;
+ }
+ if (locho.isChecked()) {
+ result.append("\nlocho = 100 Rs.");
+ total += 100;
+ }
+ if (patra.isChecked()) {
+ result.append("\npatra = 150 Rs.");
+ total += 150;
+ }
+ if (smosha.isChecked()) {
+ result.append("\nsmosha = 160 Rs.");
+ total += 160;
+ }
+ if (pizza.isChecked()) {
+ result.append("\npizza = 249 Rs.");
+ total += 249;
+ }
+ result.append("\n----------------");
+ result.append("\nTotal =" + total + "Rs.");
+ Toast.makeText(getApplicationContext(), result.toString(), 
+Toast.LENGTH_LONG).show();
+ }
+ });
+ 
+}
+}

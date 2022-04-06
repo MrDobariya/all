@@ -1,0 +1,166 @@
+5) In a main activity, take 2 editText and 5 buttons(addition, subtraction, multiplication, 
+division, reminder).When user clicks on any button, answer will be displayed on another 
+activity.
+XML FILE
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <LinearLayout
+ android:layout_width="410dp"
+ android:layout_height="200dp"
+ android:orientation="horizontal">
+ <EditText
+ android:id="@+id/e1"
+ android:textStyle="bold"
+ android:textColor="@color/black"
+ android:layout_width="100dp"
+ android:layout_height="60dp"
+ android:layout_margin="50dp"
+ android:layout_weight="1"
+ android:hint="Number"
+ android:inputType="number"
+ android:textSize="20dp" />
+ <EditText
+ android:id="@+id/e2"
+ android:textColor="@color/black"
+ android:textStyle="bold"
+ android:layout_width="100dp"
+ android:layout_height="60dp"
+ android:layout_margin="50dp"
+ android:layout_weight="1"
+ android:hint="Number"
+ android:inputType="number"
+ android:textSize="20dp" />
+ </LinearLayout>
+ <LinearLayout
+ android:layout_marginTop="250dp"
+ android:orientation="horizontal"
+ android:layout_width="415dp"
+ android:layout_height="100dp">
+ <Button
+ android:background="@color/teal_700"
+ android:id="@+id/btn1"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:textStyle="bold"
+ android:text="+"
+ android:layout_margin="10dp"
+ android:textSize="25dp"
+ android:layout_weight="1">
+ </Button>
+ <Button
+ android:id="@+id/btn2"
+ android:background="@color/teal_700"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="-"
+ android:textStyle="bold"
+ android:layout_margin="10dp"
+ android:textSize="25dp"
+ android:layout_weight="1">
+ </Button>
+ <Button
+ android:id="@+id/btn3"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_margin="10dp"
+ android:background="@color/teal_700"
+ android:textStyle="bold"
+ android:text="*"
+ android:textSize="25dp"
+ android:layout_weight="1">
+ </Button>
+ <Button
+ android:id="@+id/btn4"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="/"
+ android:background="@color/teal_700"
+ android:layout_margin="10dp"
+ android:textStyle="bold"
+ android:textSize="25dp"
+ android:layout_weight="1">
+ </Button>
+ </LinearLayout>
+</RelativeLayout>
+
+
+
+
+JAVA FILE
+package com.example.calculator;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+ private EditText edittext1, edittext2;
+ private Button btn1, btn2, btn3, btn4;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ addListenerOnButton();
+ }
+ public void addListenerOnButton() {
+ edittext1 = (EditText) findViewById(R.id.e1);
+ edittext2 = (EditText) findViewById(R.id.e2);
+ btn1 = (Button) findViewById(R.id.btn1);
+ btn2 = (Button) findViewById(R.id.btn2);
+ btn3 = (Button) findViewById(R.id.btn3);
+ btn4 = (Button) findViewById(R.id.btn4);
+ btn1.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ String value1 = edittext1.getText().toString();
+ String value2 = edittext2.getText().toString();
+ int a = Integer.parseInt(value1);
+ int b = Integer.parseInt(value2);
+ int sum = a + b;
+ Toast.makeText(getApplicationContext(), String.valueOf(sum), 
+Toast.LENGTH_LONG).show();
+ }
+ });
+ btn2.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ String value1 = edittext1.getText().toString();
+ String value2 = edittext2.getText().toString();
+ int a = Integer.parseInt(value1);
+ int b = Integer.parseInt(value2);
+ int sub = a - b;
+ Toast.makeText(getApplicationContext(), String.valueOf(sub), 
+Toast.LENGTH_LONG).show();
+ }
+ });
+ btn3.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ String value1 = edittext1.getText().toString();
+ String value2 = edittext2.getText().toString();
+ int a = Integer.parseInt(value1);
+ int b = Integer.parseInt(value2);
+ int mul = a * b;
+ Toast.makeText(getApplicationContext(), String.valueOf(mul), 
+Toast.LENGTH_LONG).show();
+ }
+ });
+ btn4.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ String value1 = edittext1.getText().toString();
+ String value2 = edittext2.getText().toString();
+ float a = Integer.parseInt(value1);
+ float b = Integer.parseInt(value2);
+ float div = a / b;
+ Toast.makeText(getApplicationContext(), String.valueOf(div), Toast.LENGTH_LONG).show();
+ }
+ });
+ }
+}
