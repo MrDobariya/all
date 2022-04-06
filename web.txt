@@ -1,0 +1,357 @@
+Create a web-page to read Employee.xml file.
+Ans:- 
+<?xml version="1.0"?>
+<Employee>
+	<employee-info>
+		<id>101</id>
+		<Name>Dhruvi</Name>
+		<Midname>Bhimjibhai</Midname>
+		<lname>Mendapara</lname>
+		<title>Accountant</title>
+		<designation>C.A</designation>
+	</employee-info>
+	
+	<employee-info>
+		<id>102</id>
+		<Name>Drashti</Name>
+		<midname>HimmatBhai</midname>
+		<lname>Kumbhani</lname>
+		<title>Programer</title>
+		<designation>B.C.A</designation>
+	</employee-info>
+	
+	<employee-info>
+		<id>103</id>
+		<Name>Dhara</Name>
+		<midname>Surashbhai</midname>
+		<lname>Vaghela</lname>
+		<title>Program Director</title>
+		<designation>B.C.A</designation>
+	</employee-info>
+	
+	<employee-info>
+		<id>104</id>
+		<Name>Pooja</Name>
+		<midname>Shailashbhai</midname>
+		<lname>Dhameliya</lname>
+		<title>Mira Enterprice</title>
+		<designation>Manager</designation>
+	</employee-info>
+	
+	<employee-info>
+		<id>105</id>
+		<Name>Krupa</Name>
+		<midname>Jiteshbhai</midname>
+		<lname>Chauhan</lname>
+		<title>Maya Enterprice</title>
+		<designation>C.A</designation>
+	</employee-info>
+</Employee>
+
+2. Create a web-page to read Teachers.json file.
+Ans:- var a=
+		{"Teacher":[{
+					"id":1,
+					"Name":{
+							"FirstName":"Gopi",
+							"LastName":"Babariya"
+						},
+					"empid":"gopibabariya@123gmail.com",
+					"Education":B.C.A",
+					"Subject":"Communication Skill",
+					"Mobileno.":9123544736
+					},
+					{
+					"id":2,
+					"Name":{
+							"FirstName":"Sangita",
+							"LastName":"Surani"
+						},
+					"empid":"sangitasurani@23gmail.com",
+					"Education":M.C.A",
+					"Subject":"Web-Designing",
+					"Mobileno.":8899754735
+					},
+					{
+					"id":3,
+					"Name":{
+							"FirstName":"Shailesh",
+							"LastName":"Dhameliya"
+						},
+					"empid":"shailesh@123gmail.com",
+					"Education":M.C.A",
+					"Subject":".NET",
+					"Mobileno.":1234544736
+					},
+					{
+					"id":4,
+					"Name":{
+							"FirstName":"Pooja",
+							"LastName":"Patel"
+						},
+					"empid":"poojapatel@03gmail.com",
+					"Education":M.C.A",
+					"Subject":"Java",
+					"Mobileno.":9234544736
+					},
+					{
+					"id":5,
+					"Name":{
+							"FirstName":"Mahesh",
+							"LastName":"Goti"
+						},
+					"empid":"maheshgoti@09gmail.com",
+					"Education":M.C.A",
+					"Subject":"Information System",
+					"Mobileno.":9123544736
+					}
+				]
+			console.log(a);
+}
+
+
+3.Create a web-page of Employee registration with proper validation using JavaScript and  jQuery and display it using node.js. 
+Ans: 
+Node:
+var fs=require('fs');
+fs.readFile("reg3.html",function(err,data)
+{
+		if (err)throw err;
+		console.log("File readed Successfully.....");
+});
+
+4.Create a node.js file which takes command line input of a numbers and display leap year. 
+Ans:-	function isLeapYear(year)
+	{
+		if(year %4==0)return true;
+		if(year%1==1)return false;
+		return years%4==0;
+}
+Output:
+	Is LeapYear(2020)
+True
+
+5. Create a nod.js file which takes command line input to print Series 3,6,9……100.
+Ans:-For(i=0;i<=100;i+=3)
+	{
+		Console.log(i);
+		}
+Output:
+3,6,9…..100.
+
+Create a nod.js file which takes command line input to print the factorial of the number.
+Ans:
+		const num=5;
+		var fact=1;
+		var i=1;
+		while(i<num)
+		{
+			fact=fact*i;
+			i++;
+		}
+		console.log(fact);
+Output: 120
+ Create a node.js file which takes command line input to print the palindrome number.
+Ans:-
+		function palindrom(str)
+{
+		var re=/[^A-Za-z0-9]/g;
+		 str=str.toLowerCase().replace(re,' ');
+var len=str.length;
+		for(var i=0;i<len/2;i++)
+		{
+			 if(str[i]!==str[len-1-i])
+			{
+	 			return false;
+ 			}
+		}
+	return true;
+}
+Output:
+		Palindrom(“121”)
+		True
+		Palindrom(“123”)
+		false
+                                                                       
+Create following program using modules in node.js. 
+Create new file 
+Ans:-
+	var fs=require(“fs”);
+	var data=”Hello”;
+	fs.writeFile(“webfile.txt”,data,function(err)
+	{
+		If(err)throw err;
+		console.log(“File is Created successfully”);
+	}); 
+
+Write content in to the file 
+Ans: var fs=require(“fs”);
+	var data=”hello”;
+	fs.writeFile(“webfile.txt”,data,function(err)
+	{
+		If(err)throw err;
+		console.log(“File is Write successfully”);
+	}); 
+
+Read file content 
+Ans: 	var fs=require('fs');
+              fs.readFile("webfile.txt",function(err,data)
+{
+		if (err)throw err;
+		console.log(data.toString(‘utf-8’))
+});
+
+Append new content to file 
+Ans: 	var fs=require('fs');
+              fs.appendFile("webfile.txt",function(err)
+{
+		if (err)throw err;
+		console.log("Data is saved Successfully.....");
+});
+
+Rename file 
+Ans:	var fs=require('fs')
+fs.rename('webfile.txt','d1.txt',function(err)
+{
+		if(err)throw err;
+		console.log("Rename file");
+});
+
+Delete file
+Ans:
+var fs=require('fs')
+              fs.unlink("webfile.txt",function(err)
+{
+		if (err)throw err;
+		console.log("File Deleted Successfully.....");
+});
+ 
+Create a simple calculator using user-defined modules.
+Ans:
+	calcu :
+	exports.add=function(x,y)
+{
+			return(x+y);
+}
+exports.subtrct=function(x,y)
+{
+			return(x-y);
+}
+exports.multiplication=function(x,y)
+{
+			return(x*y);
+};	
+Equation:
+		var calculate = require('./calcu');
+
+var x=400,y=500;
+console.log("Addition:"+calculate.add(x,y));
+console.log("Subtraction:"+calculate.subtrct(x,y));
+console.log("Multiplication:"+calculate.multiplication(x,y));
+
+10.Create a Basic calculator with +, -, *, / operations using jQuery events and methods. Take A and B input in Textbox and display the Answer on a label.
+Ans: 
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Simple calculater</title>
+	<link rel="stylesheet"href="css/bootstrap.css">
+	<script src="jquery-3.1.1.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#btnAdd").on('click',function()
+		{
+			Add();
+		})
+		$("#btnSubstract").on('click',function()
+		{
+			Substract();
+		})
+		$("#btnMultiply").on('click',function()
+		{
+			Multiply();
+		})
+		$("#btnDivide").on('click',function()
+		{	
+			Divide();
+		})
+	});
+	function Add()
+{
+	var no1=parseInt($("#txtNo1").val());
+	var no2=parseInt($("#txtNo2").val());
+	var result=no1+no2;
+	alert("the result is "+result);
+}	
+	function Substract()
+{
+		var no1=parseInt($("#txtNo1").val());
+		var no2=parseInt($("#txtNo2").val());
+());
+		var result=no1-no2;
+		alert("The Result is " + result);
+}
+	function Multiply()
+{
+	var no1=parseInt($("#txtNo1").val());
+	var no2=parseInt($("#txtNo2").val());
+	var result=no1*no2;
+	alert("The result is "+result);
+}
+	function Divide()
+{
+	 var no1=parseInt($("#txtNo1").val());
+	 var no2=parseInt($("#txtNo2").val());
+	 var result=no1/no2;
+	 alert("The result is "+result);
+}
+	
+</script>
+</head>
+<style>
+div{
+	margin-left:550px;
+	margin-top:250px;
+}
+</style>
+<body>	
+<div>
+<h1>Calculater</h1>
+	<label for="fname">First Number</label> 
+	<input type="text" id="txtNo1" placeholder="Enter First number"><br><br>
+	<label for="lname">Second Number</label>
+	<input type="text"id="txtNo2"placeholder="Enter second Number"><br><br>
+	
+	<input type="button" class="btn btn-primary"id="btnAdd" value="Add">
+	<input type="button" class="btn btn-primary"id="btnSubstract" value="Substract">
+	<input type="button" class="btn btn-primary"id="btnMultiply" value="Multiply">
+	<input type="button" class="btn btn-primary"id="btnDivide"value="Divide">
+	</div>
+</body>
+</html>
+	
+
+11.Create an example to load  the content inside an element from a file Using Ajax in jQuery.
+Ans: 
+
+<html>
+<head>
+<title>Loading Data </title>
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#box").load("sample.html");
+    });
+});
+</script>
+</head>
+<body>
+    <div id="box">
+        <h2>Click button to load new content inside DIV box</h2>
+    </div>
+    <button type="button">Load Content</button>
+</body>
+</html>
+
