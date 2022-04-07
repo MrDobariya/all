@@ -1,0 +1,36 @@
+Key press and count the press 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Press any key</h3>
+    <input type="text" name="key" id="press">
+    <h2>keypress: <span>0</span></h2>
+
+    <script>
+        $(document).ready(function() {
+            // key press to change color
+            $("input").keydown(function() {
+                $("input").css("background-color", "yellow");
+            });
+            $("input").keyup(function() {
+                $("input").css("background-color", "pink");
+            });
+
+            // count number by presssing any key
+            i = 0;
+            $("input").keypress(function() {
+                $("span").text(i += 1);
+            });
+        });
+    </script>
+</body>
+
+</html>
